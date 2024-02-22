@@ -1,0 +1,18 @@
+<h1><%= @places["place"]%></h1>
+
+<h2><%= @places["date"]%>
+
+
+<ul>
+  <% for contact in @contacts %>
+    <li>
+      <a href="/contacts/<%= contact["id"] %>">
+        <%= contact["last_name"] %>, <%= contact["first_name"] %>
+      </a>
+    </li>
+  <% end %>
+</ul>
+
+
+
+<p><a href="/place">Back to All Places</a></p>
