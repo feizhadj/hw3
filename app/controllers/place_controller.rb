@@ -1,10 +1,10 @@
 class PlaceController < ApplicationController
   def index
-    @places = Place.all
+    @place = Place.all
   end
 
   def show
-    @places = Place.find_by({"place" => params["place"]})
+    @place = Place.find_by({"place" => params["place"]})
 
     @place = Place.where({"date" => @place["date"] })
     @place = Place.where({"entry" => @place["entry"] })
@@ -17,13 +17,11 @@ class PlaceController < ApplicationController
 
 
   def create
-    @places = Place.new
+    @place = Place.new
     
-    @places["place"] = params["place"]
-    @places["date"] = params["date"]
-    @places["entry"] = params["entry"]
-
-    @places.save
+    @place["place"] = params["place"]
+  
+    @place.save
 
     redirect_to "/place"
 
