@@ -1,12 +1,10 @@
+<h1>Places I've Been</h1>
 
-<h1> Places I've Been </h1>
+<%= link_to 'Sort by Name', places_path(sort: 'name') %>
 
-<ul>
-   <% for place in @place %>
-    <li>
-      <a href="/place/<%= place["place"] %>"><%= place["place"] %> </a>
-    </li>
-   <% end %>
-</ul>
+<% @places.each do |place| %>
+  <h2><%= link_to place.name, place_path(place) %></h2>
+  <p><%= place.description %></p>
+<% end %>
 
-<p><a href="/place/new">New Place</a></p>
+<%= link_to 'New Place', new_place_path %>
