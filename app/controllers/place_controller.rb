@@ -1,31 +1,43 @@
 class PlaceController < ApplicationController
-  def index
-    @place = Place.all
-  end
-
+  
   def show
-    @place = Place.find_by({"place" => params["place"]})
-
-    @place = Place.where({"date" => @place["date"] })
-    @place = Place.where({"entry" => @place["entry"] })
   end
 
   def new
-
-    
+    @place = Place.new
   end
-
 
   def create
-    @place = Place.new
-    
-    @place["place"] = params["place"]
-  
-    @place.save
-
-    redirect_to "/place"
-
+    @place = Place.new(place_params)
+    if @place.save
+      redirect_to "/place"
+    else
+      render 'new'
+    end
   end
 
+  def edit
+  end
 
+  def update
+    if @place.update(place_params)
+      redirect_to "/place"
+    else
+      render 'edit'
+    end
+  end
+
+  def destroy
+    @place.destroy
+    redirect_to "/place/new"
+  end
+
+  private
+  def set_place
+    @place = Place.first
+  end
+
+  def place_params
+    params.require(:place).permit(:name, :description)
+  end
 end
