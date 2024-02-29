@@ -1,4 +1,5 @@
 class PlaceController < ApplicationController
+  before_action :set_place, only: [:show, :edit, :update, :destroy]
   
   def show
   end
